@@ -1,19 +1,19 @@
-import "./App.css";
-import Fader from "./components/Fader";
+import './App.css';
+import Fader from './components/Fader';
 
-import React, { useState } from "react";
-import { onMessageListener } from "./firebaseInit";
-import Notifications from "./components/Notifications/Notifications";
-import ReactNotificationComponent from "./components/Notifications/ReactNotification";
+import React, { useState } from 'react';
+import { onMessageListener } from './firebaseInit';
+import Notifications from './components/Notifications/Notifications';
+import ReactNotificationComponent from './components/Notifications/ReactNotification';
 
 function App() {
   const [show, setShow] = useState(false);
-  const [notification, setNotification] = useState({ title: "", body: "" });
+  const [notification, setNotification] = useState({ title: '', body: '' });
 
   console.log(show, notification);
 
   onMessageListener()
-    .then((payload) => {
+    .then(payload => {
       setShow(true);
       setNotification({
         title: payload.notification.title,
@@ -21,19 +21,13 @@ function App() {
       });
       console.log(payload);
     })
-    .catch((err) => console.log("failed: ", err));
+    .catch(err => console.log('failed: ', err));
 
   return (
     <div className="App">
-      {show ? (
-        <ReactNotificationComponent
-          title={notification.title}
-          body={notification.body}
-        />
-      ) : (
-        <></>
-      )}
+      {show && <ReactNotificationComponent title={notification.title} body={notification.body} />}
       <Notifications />
+      <h1>Web Push</h1>
       <Fader text="Hello React"></Fader>
     </div>
   );

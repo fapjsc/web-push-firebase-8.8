@@ -1,19 +1,17 @@
 // Scripts for firebase and firebase messaging
 // eslint-disable-next-line no-undef
-importScripts("https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js");
+importScripts('https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js');
 // eslint-disable-next-line no-undef
-importScripts("https://www.gstatic.com/firebasejs/8.2.0/firebase-messaging.js");
+importScripts('https://www.gstatic.com/firebasejs/8.2.0/firebase-messaging.js');
 
 // Initialize the Firebase app in the service worker by passing the generated config
 const firebaseConfig = {
-  apiKey: "FROM FIREBASE CONSOLE",
-  authDomain: "FROM FIREBASE CONSOLE",
-  databaseURL: "FROM FIREBASE CONSOLE",
-  projectId: "FROM FIREBASE CONSOLE",
-  storageBucket: "FROM FIREBASE CONSOLE",
-  messagingSenderId: "FROM FIREBASE CONSOLE",
-  appId: "FROM FIREBASE CONSOLE",
-  measurementId: "FROM FIREBASE CONSOLE",
+  apiKey: 'AIzaSyDNrZhATvtisIkhhN8X5tfxEf0umrq98gE',
+  authDomain: 'web-push-2f66d.firebaseapp.com',
+  projectId: 'web-push-2f66d',
+  storageBucket: 'web-push-2f66d.appspot.com',
+  messagingSenderId: '802105019569',
+  appId: '1:802105019569:web:ec9037b7f31a8b2143e690',
 };
 
 // eslint-disable-next-line no-undef
@@ -24,17 +22,15 @@ firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage(function (payload) {
-  console.log("Received background message ", payload);
+  console.log('Received background message ', payload);
 
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
     body: payload.notification.body,
-    icon: "/logo192.png",
+    icon: '/logo192.png',
+    click_action: 'http://192.168.10.111:3001',
   };
 
   // eslint-disable-next-line no-restricted-globals
-  return self.registration.showNotification(
-    notificationTitle,
-    notificationOptions
-  );
+  return self.registration.showNotification(notificationTitle, notificationOptions);
 });
