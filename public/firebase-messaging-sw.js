@@ -28,7 +28,7 @@ messaging.onBackgroundMessage(function (payload) {
   const notificationOptions = {
     body: payload.notification.body,
     icon: '/logo192.png',
-    click_action: 'http://192.168.10.111:3001',
+    click_action: 'https://silly-bhabha-5c2613.netlify.app',
   };
 
   // eslint-disable-next-line no-restricted-globals
