@@ -13,7 +13,13 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const messaging = firebase.messaging();
+let messaging;
+
+try {
+  messaging = firebase.messaging();
+} catch (error) {
+  console.log(error);
+}
 
 // const { REACT_APP_VAPID_KEY } = process.env;
 const publicKey =

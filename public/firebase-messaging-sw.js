@@ -17,9 +17,18 @@ const firebaseConfig = {
 // eslint-disable-next-line no-undef
 firebase.initializeApp(firebaseConfig);
 
-// Retrieve firebase messaging
 // eslint-disable-next-line no-undef
-const messaging = firebase.messaging();
+// const messaging = firebase.messaging();
+
+let messaging;
+
+try {
+  // Retrieve firebase messaging
+  // eslint-disable-next-line no-undef
+  messaging = firebase.messaging();
+} catch (error) {
+  console.log(error);
+}
 
 messaging.onBackgroundMessage(function (payload) {
   console.log('Received background message ', payload);
